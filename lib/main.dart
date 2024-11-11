@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:todo/core/functions/select_theme.dart';
 import 'package:todo/core/model/task_model.dart';
 import 'package:todo/core/services/app_local_storage.dart';
+import 'package:todo/core/theme_application/theme.dart';
 import 'feature/intro/splash_screen.dart';
 
 //add hive and hive_flutter to pubspec.yaml
@@ -35,7 +37,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TODO App Demo',
       //themeMode: ThemeMode.dark ,
-      themeMode: ThemeMode.light,
+
+      theme: DateTime.now().hour >= 18 || DateTime.now().hour < 6
+          ? ApplicationThemeManager.darkTheme
+          : ApplicationThemeManager.lightTheme,
       home: SplashScreen(),
     );
   }
